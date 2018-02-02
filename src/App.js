@@ -19,7 +19,8 @@ class App extends Component {
         { name: newName, age: 28 },
         { name: 'Kevin', age: 26 },
         { name: 'Manu', age: 36 }
-      ]
+      ],
+      showPersons: false
     } )
   }
 
@@ -30,6 +31,13 @@ class App extends Component {
         { name: event.target.value, age: 26 },
         { name: 'Manu', age: 36 }
       ]
+    } )
+  }
+
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState( {
+      showPersons: !doesShow
     } )
   }
 
@@ -48,20 +56,25 @@ class App extends Component {
         <p>Here's a line!</p>
         <button
           style={style}
-          onClick={() => this.switchNameHandler('BRIAN')}>Switch name</button>
-        <Person
-          name={this.state.persons[0].name}
-          age={this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, 'Brian!')}
-        />
-        <Person
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          changed={this.nameChangedHandler}
-        />
-        <Person
-          name={this.state.persons[2].name}
-          age ={this.state.persons[2].age} >My Hobbies: Soccer</Person>
+          onClick={this.togglePersonsHandler}>Togglel Persons</button>
+        {
+          this.state.showPersons ?
+            <div>
+              <Person
+                name={this.state.persons[0].name}
+                age={this.state.persons[0].age}
+                click={this.switchNameHandler.bind(this, 'Brian!')}
+              />
+              <Person
+                name={this.state.persons[1].name}
+                age={this.state.persons[1].age}
+                changed={this.nameChangedHandler}
+              />
+              <Person
+                name={this.state.persons[2].name}
+                age ={this.state.persons[2].age} >My Hobbies: Soccer</Person>
+            </div> : null
+        }
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
