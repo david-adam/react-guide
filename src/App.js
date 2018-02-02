@@ -50,31 +50,28 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+
+    if ( this.state.showPersons ) {
+      persons = (
+        <div>
+          {this.state.persons.map(person => {
+            return <Person
+              name={person.name}
+              age={person.age} />
+          })}
+        </div>
+      )
+    }
+
     return (
       <div className="App">
         <h1>React App</h1>
         <p>Here's a line!</p>
         <button
           style={style}
-          onClick={this.togglePersonsHandler}>Togglel Persons</button>
-        {
-          this.state.showPersons ?
-            <div>
-              <Person
-                name={this.state.persons[0].name}
-                age={this.state.persons[0].age}
-                click={this.switchNameHandler.bind(this, 'Brian!')}
-              />
-              <Person
-                name={this.state.persons[1].name}
-                age={this.state.persons[1].age}
-                changed={this.nameChangedHandler}
-              />
-              <Person
-                name={this.state.persons[2].name}
-                age ={this.state.persons[2].age} >My Hobbies: Soccer</Person>
-            </div> : null
-        }
+          onClick={this.togglePersonsHandler}>Toggle Persons</button>
+        {persons}
       </div>
     );
     // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Does this work now?'));
