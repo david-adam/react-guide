@@ -10,7 +10,8 @@ class App extends Component {
       { id: '1', name: 'Brian', age: 28 },
       { id: '2', name: 'Kev', age: 26 },
       { id: '3', name: 'Manu', age: 29 }
-    ]
+    ],
+    showPersons: false
   }
 
   switchNameHandler = (newName) => {
@@ -73,6 +74,7 @@ class App extends Component {
     return (
         <div className={classes.App}>
           <Cockpit
+            appTitle={this.props.title}
             showPersons={this.state.showPersons}
             persons={this.state.persons}
             clicked={this.togglePersonsHandler} />
